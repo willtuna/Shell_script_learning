@@ -1,0 +1,86 @@
+#! /bin/bash 
+# 告訴這個shell script 檔要用哪一種interpretor 去 執行 `<br/>
+
+# Varible:
+first=Issac second=Bashevis third=Singer
+fullname="Issac Bashevis Singer"
+oldname=$fullname
+
+Alternamtive="$first $second $third"
+#   "" 雙引號內的變數如果要dereference的話 就要加上 $ 符號    '' 單引號內就沒這種功能
+
+#echo
+echo "Hello This is $fullname"
+echo -n "Won't print new line with echo -n"
+#不會印出newline
+
+#printf
+#用法幾乎跟c 一樣，只是不需要（）
+
+printf "Hello This is %s printed from printf \n" fullname
+ 
+#Escape Sequence:
+#\b ：backsapce
+#\c : no print newline
+#\n : newline
+#\r : CarriageReturn
+
+#IO redirection
+# program < file 
+       # direct file into program as input
+# program > file 
+       # direct file into program as output
+
+
+# tr 指令  ?? 其實我還不懂這個東西怎麼用
+
+
+
+# 特殊檔案 /dev/null    俗稱 bitbucket 所有傳到這裡的檔案都會丟掉
+
+if grep 'person' ./*.xml > /dev/null
+then
+    printf "Find the pattern !!\n"
+else
+    echo "Find nothing"
+fi
+
+# /dev/tty      當程式開啟這個檔案時，他會自動把它direct 到一個 terminal 或是 serial port
+printf "Enter new password: \n"
+stty -echo   #關閉自動列印的功能
+read pass < /dev/tty
+printf "Enter again\n"
+read pass2 < /dev/tty
+if [ $pass != $pass2 ]
+then
+echo "Password not match"
+fi
+
+
+stty echo #把echo 功能打開
+
+
+
+
+
+
+# $PATH
+#PATH 存放著 Shell Command 搜尋命令的順序，這裡很明確的告訴shell 要去哪個資料夾去找指令
+#其中， :: 代表 current directory   通常這種環境變數都放在 .profile檔案裡面
+#            例如：  PATH=::/usr/bin:/usr/lib:/usr/local
+#所以
+#PATH=$PATH:/directory you wish/ 便會把 directory 加到搜尋目錄裡面
+
+
+
+#Positional Argument
+# 通常  $0 指的是command 本身的名子 , $1 ~ $9 是9個 輸入argument,  第10個之後要改用 ${10}
+
+
+
+
+
+#  追蹤shell script ：
+# 我們可以藉由  set -x 的方式 讓terminal 印出目前正在執行那的shell commadn
+# 如果要把他關閉 再補上  set +x 就可以了
+

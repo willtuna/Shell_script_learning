@@ -1,0 +1,32 @@
+#! /bin/bash
+
+
+if grep 'person' $1 > /dev/null
+then
+    echo "find pattern"
+else
+    echo "pattern not found"
+fi
+
+
+
+for f in $1
+do
+    tr -d 'ifficult' < $f >> Withoutifficult.txt
+done
+
+
+
+
+printf "Enter new password: \n"
+stty -echo   #關閉自動列印的功能
+read pass < /dev/tty
+printf "Enter again\n"
+read pass2 < /dev/tty
+
+if [ $pass != $pass2 ]
+then 
+    echo "Password not match"
+fi
+
+stty echo
